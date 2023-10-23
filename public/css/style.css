@@ -1,9 +1,24 @@
-body {
+.body-home {
     font-family: 'Poppins', sans-serif;
     background-color: #389AB0;
 }
 
+.body-dashboard {
+    font-family: 'Poppins', sans-serif;
+    background-color: white;
+}
+
+/* Sidebar Style */
+.sidebar {
+    background-color: #959DAF;
+    height: 100vh;
+}
+
 /* Navbar Style */
+.navbar {
+    background-color: #389AB0;
+}
+
 .navbar-brand {
     font-weight: 700;
     font-size: 20px;
@@ -17,6 +32,40 @@ body {
 .nav-link {
     font-weight: 600;
     font-size: 16px;
+}
+
+.nav-link:hover {
+    background-color: #D9D9D9;
+}
+
+/* Content */
+.content-title {
+    font-weight: 700;
+}
+
+.card {
+    border-radius: 15px;
+}
+
+.display-4 {
+    font-weight: 600;
+}
+
+.card-title {
+    font-weight: 700;
+}
+
+.card-body-icon {
+    position: absolute;
+    z-index: 0;
+    top: 25px;
+    right: 10px;
+    font-size: 70px;
+    opacity: 0.6;
+}
+
+.card-container {
+    margin-bottom: 20px;
 }
 
 /* Hero Section*/
@@ -61,3 +110,6 @@ body {
     font-size: 20px;
     border-radius: 10px;
 }
+
+/* Map Style */
+#map { height: 360px; }

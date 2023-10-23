@@ -1,0 +1,57 @@
+<body class="body-database">
+  <%- include('../partials/navbar') %>
+    <%- include('../partials/sidebar') %>
+      <!-- Content -->
+      <div class="col-md-10 p-5 pt-3">
+        <h3 class="content-title"><i class="fa-solid fa-database mr-2" style="color: #000000;"><span
+              style="margin-left: 10px;"></span></i>Database</h3>
+        <hr>
+
+        <div class="d-flex col-md-10">
+          <!-- Tombol "Tambah Asset" -->
+          <button type="button" class="btn btn-secondary mx-2" data-bs-toggle="modal" data-bs-target="#addAssetModal">
+            Add Asset
+          </button>
+        </div>
+
+
+        <div class="assets-table">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">No</th>
+                <th scope="col">Name</th>
+                <th scope="col">Type</th>
+                <th scope="col">Address</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% assets.forEach((data, index) => { %>
+                <tr>
+                  <td><%= index + 1 %></td>
+                  <td><%= data.name %></td>
+                  <td><%= data.type %></td>
+                  <td><%= data.address %></td>
+                  <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                      <button type="button" class="btn btn-secondary" id="editAssetButton" onclick="editAssetPage(<%=data.id%>)">Edit</button>
+                      <button type="button" class="btn btn-secondary" id="deleteAsset" onclick="deleteAsset(<%=data.id%>)">Delete</button>
+                      <button type="button" class="btn btn-secondary" id="detailButton" onclick="viewAsset(<%=data.id%>)">View</button>
+                    </div>
+                  </td>
+                </tr>
+              <%});%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Include Add Asset Pop Up -->
+      <%- include('../popups/addAsset.ejs') %>
+
+       <!-- Include Edit Asset Pop Up -->
+       <%- include('../popups/editAsset.ejs') %>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Management System</title>
+
+    <!-- Connect to bootstrap 5 -->
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+
+    <!-- Font Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Connect to CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Connect to leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+</head>
+
+<body class="body-dashboard">
+    <%- include('../partials/navbar') %>
+        <%- include('../partials/sidebar') %>
+            <!--Content -->
+
+            <div class="col-md-10 p-5 pt-3">
+                <h3 class="content-title"><i class="fa-solid fa-location-dot mr-2" style="color: #000000;"><span
+                            style="margin-left: 10px;"></span></i>Map Visualization</h3>
+                <hr>
+                <!-- Card -->
+                <div class="row card-container">
+                    <div class="card bg-info mx-2" style="width: 15rem;">
+                        <div class="card-body">
+                            <div class="card-body-icon">
+                                <i class="fa-solid fa-building" style="color: #000000;"></i>
+                            </div>
+                            <h5 class="card-title">Jumlah Aset A</h5>
+                            <p class="display-4">236</p>
+                        </div>
+                    </div>
+                    <div class="card bg-info mx-1" style="width: 15rem;">
+                        <div class="card-body">
+                            <div class="card-body-icon">
+                                <i class="fa-solid fa-house" style="color: #000000;"></i>
+                            </div>
+                            <h5 class="card-title">Jumlah Aset B</h5>
+                            <p class="display-4">146</p>
+                        </div>
+                    </div>
+                    <div class="card bg-info mx-1" style="width: 15rem;">
+                        <div class="card-body">
+                            <div class="card-body-icon">
+                                <i class="fa-solid fa-gears" style="color: #000000;"></i>
+                            </div>
+                            <h5 class="card-title">Aset Aktif</h5>
+                            <p class="display-4">250</p>
+                        </div>
+                    </div>
+                    <div class="card bg-info mx-1" style="width: 15rem;">
+                        <div class="card-body">
+                            <div class="card-body-icon">
+                                <i class="fa-solid fa-screwdriver-wrench" style="color: #000000;"></i>
+                            </div>
+                            <h5 class="card-title">Dalam Perbaikan</h5>
+                            <p class="display-4">32</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- map visualization -->
+                <div id="leaflet-js-map"></div>
+
+            </div>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <!-- <link rel="stylesheet" href="/bootstrap/js/bootstrap.min.js"> -->
+            <script src="/bootstrap/js/bootstrap.min.js"></script>
+            <script src="/js/index.js"></script>
+
+            <!-- Script running map -->
+            <script>
+                const map = L.map('leaflet-js-map').setView([46.231226, 6.051737], 14);
+                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                }).addTo(map);
+
+                let coordinates =JSON.stringify("<%= coordinates %>");
+                let markers = []
+
+                console.log(coordinates);
+
+                coordinates.forEach(element => {
+                    markers.push(new L.marker([element.lat, element.lng]))
+                });
+                if (markers.length() > 0) {
+                    const leafletMarkers = L.layerGroup(markers)
+                    leafletMarkers.addTo(map);
+                } else {
+                    const leafletMarkers = L.layerGroup([
+                        new L.marker([46.233226, 6.055737]),
+                        new L.marker([46.2278, 6.0510]),
+                        new L.marker([46.23336, 6.0471])
+                    ]);
+                    leafletMarkers.addTo(map);
+                }
+            </script>
+</body>
+
+</html>

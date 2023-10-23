@@ -1,0 +1,48 @@
+<div class="modal fade" id="addAssetModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addAssetModalLabel">Add Asset</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Add your registration form here -->
+                <form id="addAsset-form">
+                    <div class="mb-3 mt-4">
+                        <label for="inputAdmin" class="form-label">Admin</label>
+                        <input type="number" class="form-control" id="inputAdmin" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputName" class="form-label">Asset Name</label>
+                        <input type="text" class="form-control" id="inputName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputType" class="form-label">Asset Type</label>
+                        <input type="text" class="form-control" id="inputType" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputAddress" class="form-label">Asset Address</label>
+                        <input type="text" class="form-control" id="inputAddress" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputDescription" class="form-label">Asset Description</label>
+                        <input type="text" class="form-control" id="inputDescription" required>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" id="inputPhotos">
+                        <label class="input-group-text" for="inputPhotos">Upload</label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputCoordinate" class="form-label">Asset Coordinate</label>
+                        <input type="text" class="form-control" id="inputCoordinate" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputStatus" class="form-label">Asset Status</label>
+                        <input class="form-check-input" type="checkbox" value="true" id="inputStatus">
+                    </div>
+                    <button type="submit" class="btn btn-primary mx-auto">SUBMIT</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
