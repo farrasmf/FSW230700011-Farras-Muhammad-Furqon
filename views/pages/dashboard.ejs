@@ -9,13 +9,14 @@
     <!-- Connect to bootstrap 5 -->
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
 
+    <!-- Connect to CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
     <!-- Font Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Connect to CSS -->
-    <link rel="stylesheet" href="/css/style.css">
 
     <!-- Connect to leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -25,91 +26,150 @@
 </head>
 
 <body class="body-dashboard">
-    <%- include('../partials/navbar') %>
-        <%- include('../partials/sidebar') %>
-            <!--Content -->
+    <nav class="navbar navbar-expand-lg navbar-dark fix-top w-100">
+        <div class="container">
+            <a class="navbar-brand" href="#">Asset Management Sytem</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link active dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown <i class="fa-solid fa-user mx-2" style="color: #000000;"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-            <div class="col-md-10 p-5 pt-3">
-                <h3 class="content-title"><i class="fa-solid fa-location-dot mr-2" style="color: #000000;"><span
-                            style="margin-left: 10px;"></span></i>Map Visualization</h3>
-                <hr>
-                <!-- Card -->
-                <div class="row card-container">
-                    <div class="card bg-info mx-2" style="width: 15rem;">
-                        <div class="card-body">
-                            <div class="card-body-icon">
-                                <i class="fa-solid fa-building" style="color: #000000;"></i>
-                            </div>
-                            <h5 class="card-title">Jumlah Aset A</h5>
-                            <p class="display-4">236</p>
+    <div class="row no-gutters">
+        <div class="col-md-2 sidebar pr-3 pt-4">
+            <ul class="nav flex-column ml-3 mb-5">
+                <li class="nav-item">
+                    <a class="nav-link text-black" aria-current="page" href="/dashboard"><i
+                            class="fa-solid fa-location-dot mr-2" style="color: #000000;"></i><span
+                            style="margin-left: 10px;"></span>Visualization</a>
+                    <hr class="bg-black">
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="/database"><i class="fa-solid fa-database mr-2"
+                            style="color: #000000;"></i><span style="margin-left: 10px;"></span>Database</a>
+                    <hr class="bg-black">
+                </li>
+            </ul>
+        </div>
+
+        <!--Content -->
+
+        <div class="col-md-10 p-5 pt-3">
+            <h3 class="content-title"><i class="fa-solid fa-location-dot mr-2" style="color: #000000;"><span
+                        style="margin-left: 10px;"></span></i>Map Visualization</h3>
+            <hr>
+            <!-- Card -->
+            <div class="row card-container">
+                <div class="card bg-info mx-2" style="width: 15rem;">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fa-solid fa-building" style="color: #000000;"></i>
                         </div>
-                    </div>
-                    <div class="card bg-info mx-1" style="width: 15rem;">
-                        <div class="card-body">
-                            <div class="card-body-icon">
-                                <i class="fa-solid fa-house" style="color: #000000;"></i>
-                            </div>
-                            <h5 class="card-title">Jumlah Aset B</h5>
-                            <p class="display-4">146</p>
-                        </div>
-                    </div>
-                    <div class="card bg-info mx-1" style="width: 15rem;">
-                        <div class="card-body">
-                            <div class="card-body-icon">
-                                <i class="fa-solid fa-gears" style="color: #000000;"></i>
-                            </div>
-                            <h5 class="card-title">Aset Aktif</h5>
-                            <p class="display-4">250</p>
-                        </div>
-                    </div>
-                    <div class="card bg-info mx-1" style="width: 15rem;">
-                        <div class="card-body">
-                            <div class="card-body-icon">
-                                <i class="fa-solid fa-screwdriver-wrench" style="color: #000000;"></i>
-                            </div>
-                            <h5 class="card-title">Dalam Perbaikan</h5>
-                            <p class="display-4">32</p>
-                        </div>
+                        <h5 class="card-title">Jumlah Aset</h5>
+                        <p class="display-4">
+                            <%= assets.length %>
+                        </p>
                     </div>
                 </div>
-
-                <!-- map visualization -->
-                <div id="leaflet-js-map"></div>
-
+                <div class="card bg-info mx-1" style="width: 15rem;">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fa-solid fa-gears" style="color: #000000;"></i>
+                        </div>
+                        <h5 class="card-title">Aset Aktif</h5>
+                        <p class="display-4" id="activeAssetsCount"></p>
+                    </div>
+                </div>
+                <div class="card bg-info mx-1" style="width: 15rem;">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fa-solid fa-screwdriver-wrench" style="color: #000000;"></i>
+                        </div>
+                        <h5 class="card-title">Aset Non Aktif</h5>
+                        <p class="display-4" id="inactiveAssetsCount"></p>
+                    </div>
+                </div>
             </div>
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-            <!-- <link rel="stylesheet" href="/bootstrap/js/bootstrap.min.js"> -->
-            <script src="/bootstrap/js/bootstrap.min.js"></script>
-            <script src="/js/index.js"></script>
 
-            <!-- Script running map -->
-            <script>
-                const map = L.map('leaflet-js-map').setView([46.231226, 6.051737], 14);
-                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    maxZoom: 19,
-                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                }).addTo(map);
+            <!-- map visualization -->
+            <div id="map"></div>
 
-                let coordinates =JSON.stringify("<%= coordinates %>");
-                let markers = []
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- <link rel="stylesheet" href="/bootstrap/js/bootstrap.min.js"> -->
+        <script src="/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/js/index.js"></script>
 
-                console.log(coordinates);
+        <!-- Script running map -->
+        <script>
+            $.ajax({
+                url: "/api/v1/assets",
+                type: "GET",
+                contentType: "application/json",
+                success: function (response) {
+                    const data = response.data;
 
-                coordinates.forEach(element => {
-                    markers.push(new L.marker([element.lat, element.lng]))
-                });
-                if (markers.length() > 0) {
-                    const leafletMarkers = L.layerGroup(markers)
-                    leafletMarkers.addTo(map);
-                } else {
-                    const leafletMarkers = L.layerGroup([
-                        new L.marker([46.233226, 6.055737]),
-                        new L.marker([46.2278, 6.0510]),
-                        new L.marker([46.23336, 6.0471])
-                    ]);
-                    leafletMarkers.addTo(map);
+                    // Menghitung aset aktif
+                    const activeAssetsCount = data.filter(item => item.is_active === true).length;
+
+                    // Menampilkann aset aktif pada html
+                    document.getElementById('activeAssetsCount').textContent = activeAssetsCount;
+
+                    // Menghitung aset aktif
+                    const inactiveAssetsCount = data.filter(item => item.is_active === false).length;
+
+                    // Menampilkann aset tidak aktif pada html
+                    document.getElementById('inactiveAssetsCount').textContent = inactiveAssetsCount;
+
+                    let map = L.map('map').setView([-6.5973417, 106.7964481], 14);
+                    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        maxZoom: 19,
+                        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                    }).addTo(map);
+
+                    const markers = [];
+
+                    data.forEach(item => {
+                        const lat = item.lat;
+                        const long = item.long;
+                        markers.push(new L.marker([lat, long]));
+                    });
+
+                    console.log(markers);
+
+                    if (markers.length > 0) {
+                        const leafletMarkers = L.layerGroup(markers)
+                        leafletMarkers.addTo(map);
+                    } else {
+                        const leafletMarkers = L.layerGroup([
+                            new L.marker([46.233226, 6.055737]),
+                            new L.marker([46.2278, 6.0510]),
+                            new L.marker([46.23336, 6.0471])
+                        ]);
+                        leafletMarkers.addTo(map);
+                    }
+                },
+                error: function (error) {
+                    console.log('Error:', error)
                 }
-            </script>
+            });
+        </script>
+        <script src="/bootstrap/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>

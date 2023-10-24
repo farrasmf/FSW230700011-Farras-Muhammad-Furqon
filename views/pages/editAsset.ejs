@@ -1,53 +1,60 @@
 <body class="body-database">
-    <%- include('../partials/navbar') %>
-      <%- include('../partials/sidebar') %>
-        <!-- Content -->
-        <div class="col-md-10 p-5 pt-3">
-          <h3 class="content-title"><i class="fa-solid fa-database mr-2" style="color: #000000;"><span
-                style="margin-left: 10px;"></span></i>Edit Asset</h3>
-          <hr>
-  
-          <div class="edit-data-asset" style="margin-left: 10px;">
-            <form id="editAsset-form">
-              <div class="mb-3 mt-4">
-                  <label for="editAdmin" class="form-label">Admin</label>
-                  <input type="number" class="form-control" id="editAdmin" required>
+  <%- include('../partials/navbar') %>
+    <%- include('../partials/sidebar') %>
+      <!-- Content -->
+      <div class="col-md-10 p-5 pt-3">
+        <h3 class="content-title"><i class="fa-solid fa-database mr-2" style="color: #000000;"><span
+              style="margin-left: 10px;"></span></i>Edit Asset</h3>
+        <hr>
+
+        <div class="edit-data-asset" style="margin-left: 10px;">
+          <form id="editAsset-form">
+            <div class="mb-3 mt-4">
+              <label for="editAdmin" class="form-label">Admin</label>
+              <input type="number" class="form-control" id="editAdmin" required>
+            </div>
+            <div class="mb-3">
+              <label for="editName" class="form-label">Asset Name</label>
+              <input type="text" class="form-control" id="editName" required>
+            </div>
+            <div class="mb-3">
+              <label for="editType" class="form-label">Asset Type</label>
+              <input type="text" class="form-control" id="editType" required>
+            </div>
+            <div class="mb-3">
+              <label for="editAddress" class="form-label">Asset Address</label>
+              <input type="text" class="form-control" id="editAddress" required>
+            </div>
+            <div class="mb-3">
+              <label for="editDescription" class="form-label">Asset Description</label>
+              <input type="text" class="form-control" id="editDescription" required>
+            </div>
+            <div class="mb-3">
+              <label for="editPhotos" class="form-label">Asset Photo</label>
+              <input type="text" class="form-control" id="editPhotos" required>
+            </div>
+            <div class="mb-3 row">
+              <div class="col-md-4">
+                <label for="editLat" class="form-label">Latitude</label>
+                <input type="text" class="form-control" id="editLat" required>
               </div>
-              <div class="mb-3">
-                  <label for="editName" class="form-label">Asset Name</label>
-                  <input type="text" class="form-control" id="editName" required>
+              <div class="col-md-4">
+                <label for="editLong" class="form-label">Longtitude</label>
+                <input type="text" class="form-control" id="editLong" required>
               </div>
-              <div class="mb-3">
-                  <label for="editType" class="form-label">Asset Type</label>
-                  <input type="text" class="form-control" id="editType" required>
-              </div>
-              <div class="mb-3">
-                  <label for="editAddress" class="form-label">Asset Address</label>
-                  <input type="text" class="form-control" id="editAddress" required>
-              </div>
-              <div class="mb-3">
-                  <label for="editDescription" class="form-label">Asset Description</label>
-                  <input type="text" class="form-control" id="editDescription" required>
-              </div>
-              <div class="input-group mb-3">
-                  <input type="file" class="form-control" id="editPhotos">
-                  <label class="input-group-text" for="editPhotos">Upload</label>
-              </div>
-              <div class="mb-3">
-                  <label for="editCoordinate" class="form-label">Asset Coordinate</label>
-                  <input type="text" class="form-control" id="editCoordinate" required>
-              </div>
-              <div class="mb-3">
-                  <label for="editStatus" class="form-label">Asset Status</label>
-                  <input class="form-check-input" type="checkbox" value="true" id="editStatus">
-              </div>
-              <button type="submit" class="btn btn-primary mx-auto">EDIT</button>
+            </div>
+            <div class="mb-3">
+              <label for="editStatus" class="form-label">Asset Status</label>
+              <input class="form-check-input" type="checkbox" value="true" id="editStatus">
+            </div>
+            <button type="submit" class="btn btn-secondary mx-auto">EDIT</button>
+            <button class="btn btn-secondary mx-auto" id="backEditAssetButton">Back</button>
           </form>
         </div>
-  
-  </body>
-  <script>
-  
-  </script>
-  
-  </html>
+
+</body>
+<script>
+
+</script>
+
+</html>

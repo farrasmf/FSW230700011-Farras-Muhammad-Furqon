@@ -11,8 +11,8 @@ class HomeController {
     }
 
     async indexDashboard(req, res) {
-        const coordinates = await assetService.getCoordinate();
-        res.render("pages/dashboard", { coordinates });
+        const assets = await assetService.getAsset();
+        res.render("pages/dashboard", {assets} );
     }
 
     async indexDatabase(req, res) {
@@ -30,8 +30,12 @@ class HomeController {
     }
 
     async indexDetailAsset(req, res) {
-        res.render("pages/detailAsset", { layout: "layouts/layout" });
+        const id = req.params.id; 
+        const assets = await assetService.getOneAsset(id);
+        res.render("pages/detailAsset", { layout: "layouts/layout", assets });
     }
+
+
 }
 
 module.exports = HomeController;

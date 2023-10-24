@@ -13,7 +13,7 @@
     "db:seed": "sequelize db:seed:all",
     "seed:create": "sequelize seed:create",
     "table:create": "sequelize model:create",
-    "migrate:generate": "sequelize migrate:generate"
+    "migration:generate": "sequelize migration:generate"
   },
   "keywords": [],
   "author": "",

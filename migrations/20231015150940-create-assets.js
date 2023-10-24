@@ -32,9 +32,9 @@ module.exports = {
       },
       photos: {
         allowNull: true,
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
-      coordinate: {
+      lat: {
         type: Sequelize.STRING
       },
       is_active: {

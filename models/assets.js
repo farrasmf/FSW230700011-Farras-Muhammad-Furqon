@@ -18,9 +18,10 @@ module.exports = (sequelize, DataTypes) => {
     type: DataTypes.STRING,
     address: DataTypes.STRING,
     description: DataTypes.TEXT,
-    photos: DataTypes.STRING,
-    coordinate: DataTypes.STRING,
-    is_active: DataTypes.BOOLEAN
+    photos: DataTypes.TEXT,
+    lat: DataTypes.STRING,
+    is_active: DataTypes.BOOLEAN,
+    long: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'assets',

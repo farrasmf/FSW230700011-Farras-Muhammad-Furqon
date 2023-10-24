@@ -1,9 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   const loginButton = document.getElementById("loginButton");
   const registrationButton = document.getElementById("registrationButton");
-  const detailButton = document.getElementById("detailButton");
   const backAssetDetailButton = document.getElementById("backAssetDetailButton");
-  const editAssetButton = document.getElementById("editAssetButton");
+  const backEditAssetButton = document.getElementById("backEditAssetButton");
 
   if (loginButton) {
     loginButton.addEventListener("click", function () {
@@ -17,24 +16,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // if (detailButton) {
-  //   detailButton.addEventListener("click", function () {
-  //     window.location.href = "/assetDetail/";
-  //   });
-  // }
-
   if (backAssetDetailButton) {
     backAssetDetailButton.addEventListener("click", function () {
       window.location.href = "/database";
     });
   }
 
-  // if (editAssetButton) {
-  //   editAssetButton.addEventListener("click", function () {
-  //     const id = editAssetButton.getAttribute("data-id");
-  //     window.location.href = "/editAsset/" + id;
-  //   });
-  // }
+  if (backEditAssetButton) {
+    backEditAssetButton.addEventListener("click", function () {
+      window.location.href = "/database";
+    });
+  }
 });
 
 
@@ -77,15 +69,16 @@ $("#addAsset-form").submit(function (event) {
   const address = $("#inputAddress").val();
   const description = $("#inputDescription").val();
   const photos = $("#inputPhotos").val();
-  const coordinate = $("#inputCoordinate").val();
+  const lat = $("#inputLat").val();
   const is_active = $("#inputStatus").val();
+  const long = $("#inputLong").val();
 
   // Mengirim data ke API menggunakan AJAX
   $.ajax({
     url: "/api/v1/assets", // Ganti dengan URL API sesuai dengan struktur Anda
     type: "POST",
     contentType: "application/json",
-    data: JSON.stringify({ admin_id, name, type, address, description, photos, coordinate, is_active }),
+    data: JSON.stringify({ admin_id, name, type, address, description, photos, lat, is_active, long }),
     success: function (response) {
       // Tindakan setelah berhasil
       alert("Asset berhasil ditambah.");
@@ -119,24 +112,12 @@ function deleteAsset(id) {
   });
 }
 
-// Function view asset
+// Function for button view asset
 function viewAsset(id) {
-  $.ajax({
-    url: "/api/v1/detailAsset/" + id,
-    type: "GET",
-    contentType: "application/json",
-    success: function (response) {
-      const data = JSON.stringify(response)
-      window.location.href = "/assetDetail/" + id;
-      console.log(data);
-    },
-    error: function (error) {
-      console.error("Terjadi kesalahan: " + JSON.stringify(error));
-      alert("Gagal memuat halaman");
-    },
-  });
+  window.location.href = "/assetDetail/" + id;
 }
 
+// Function for button edit asset
 function editAssetPage(id) {
   window.location.href = "/editAsset/" + id;
 }
@@ -155,15 +136,16 @@ $("#editAsset-form").submit(function (event) {
   const address = $("#editAddress").val();
   const description = $("#editDescription").val();
   const photos = $("#editPhotos").val();
-  const coordinate = $("#editCoordinate").val();
+  const lat = $("#editLat").val();
   const is_active = $("#editStatus").val();
+  const long = $("#editLong").val();
 
   // Mengirim data ke API menggunakan AJAX
   $.ajax({
     url: "/api/v1/assets/" + id, // Ganti dengan URL API sesuai dengan struktur Anda
     type: "PUT",
     contentType: "application/json",
-    data: JSON.stringify({ id, admin_id, name, type, address, description, photos, coordinate, is_active }),
+    data: JSON.stringify({ id, admin_id, name, type, address, description, photos, lat, is_active, long }),
     success: function (response) {
       // Tindakan setelah berhasil
       alert("Asset berhasil diedit.");

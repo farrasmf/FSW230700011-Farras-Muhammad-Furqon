@@ -46,6 +46,8 @@ class AssetController {
             console.error(error);
         }
     }
+
+
 }
 
 module.exports = AssetController;
